@@ -34,7 +34,26 @@ object Options {
    * - does not exist: 					"not existing"
    */
   def roomState(rooms: Map[Int, Option[String]], room: Int): String = {
-    error("Fix me")
+    if (rooms.contains(room)) {
+      val returnValue: String = rooms(room).getOrElse("empty")
+      if (returnValue == "locked") {
+        "not available"
+      } else {
+        returnValue
+      }
+    } else {
+      "not existing"
+    }
+  }
+
+  def getNumberInRoom(rooms: Map[Int, Option[String]], room: Int): Int = {
+    val state: String = roomState(rooms, room)
+    val strings: List[String] = List("not available", "not existing", "empty")
+    if (strings.contains(state)) {
+      0
+    } else {
+      state.toInt
+    }
   }
 
   /**
@@ -44,6 +63,10 @@ object Options {
    * to convert a possible numeric String (e.g. Some("12")) to an integer
    */
   def totalPeopleInRooms(rooms: Map[Int, Option[String]]): Int = {
-    error("Fix me")
+    var total: Int = 0
+    rooms.keys.foreach { j => 
+      total += getNumberInRoom(rooms,j)
+    }
+    total
   }
 }

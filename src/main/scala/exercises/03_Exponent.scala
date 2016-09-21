@@ -14,6 +14,12 @@ object Exponent {
    * NOTE: Scala has a built-in exponent function, but you're not allowed to
    * use it to implement `expt`
    */
-  def expt(n: Int, e: Int): Int = -1
+  def expt(n: Int, e: Int): Int = if (e == 0) {
+                                    1
+                                  } else if((e % 2) == 0) {
+                                    expt(n*n,e/2)
+                                  } else {
+                                    n * expt(n*n,(e-1)/2)
+                                  }
 
 }
