@@ -62,7 +62,7 @@ object PatternMatching {
    *    - anything else, the function result is "Some Scala class"
    */
   def matchOnInputType(in: Any): String = in match {
-    case _: String => "A string with length n"
+    case s: String => "A string with length " + s.length.toString
     case _: Integer => "A positive integer"
     case p: Person => "A person with name: " + p.name
     case seq1@Seq(hd1, hd2, tail @ _ *) => if (seq1.length > 10) {

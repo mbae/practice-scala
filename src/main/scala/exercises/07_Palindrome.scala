@@ -9,11 +9,14 @@ object Palindrome {
    *  http://docs.scala-lang.org/overviews/collections/overview.html 
    */
   def isPalindrome(s: String): Boolean = 
-  	if (s.length <= 1) {
+  	if (s.length == 0) {
   		true
-  	} else if (s.take(1).equals(s.takeRight(1))) {
-  		println(s.slice(1,s.length - 1))
+  	} else if (!s.charAt(0).isLetter) {
   		isPalindrome(s.slice(1,s.length))
+  	} else if (!s.charAt(s.length-1).isLetter) {
+  		isPalindrome(s.slice(0, s.length-1))
+  	} else if (s.take(1).toUpperCase.equals(s.takeRight(1).toUpperCase)) {
+  		isPalindrome(s.slice(1,s.length - 1))
   	} else {
   		false
   	}

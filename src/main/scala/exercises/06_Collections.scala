@@ -161,7 +161,13 @@ object Collections {
    * of the two list
    */
   def sumOfTwo(l1: List[Int], l2: List[Int]): List[Int] = {
-    l1.zip(l2).map({case (m,n) => m + n})
+    if (l1.isEmpty) {
+      l2
+    } else if (l2.isEmpty) {
+      l1
+    } else {
+      l1.zip(l2).map({case (m,n) => m + n}) 
+    }
   }
 
   /**
