@@ -31,14 +31,18 @@ object Collections {
    * 
    */
   def firstElementInList[T](l: List[T]): T = {
-    error("fix me")
+    l.head
   }
 
   /**
    * Get the sum of all the elements in the list, e.g. sumOfList(List(1,2,3)) = 6.
    */
   def sumOfList(l: List[Int]): Int = {
-    error("fix me")
+    if (l.length == 0) {
+      0
+    } else {
+      l.head + sumOfList(l.tail)
+    }
   }
 
   /**
@@ -51,7 +55,7 @@ object Collections {
    *  - ... etc
    */
   def lastElementInList[T](l: List[T]): T = {
-    error("fix me")
+    l.reverse.head
   }
 
    /**
@@ -65,7 +69,7 @@ object Collections {
    *  - ... etc
    */
   def nthElementInList[T](n: Int, l: List[T]): T = {
-    error("fix me")
+    l(n)
   }
 
   /**
@@ -79,7 +83,7 @@ object Collections {
    *  - ... etc 
    */
   def concatLists[T](l1: List[T], l2: List[T]): List[T] = {
-    error("fix me")
+    List.concat(l1, l2)
   }
 
   /**
@@ -92,7 +96,7 @@ object Collections {
    * 
    */
   def sortList[T <% Ordered[T]](list: List[T]): List[T] = {
-    error("fix me")
+    list.sorted
   }
 
   /**
@@ -103,7 +107,13 @@ object Collections {
    * to implement in your own free-style way.
    */
   def elementExists[T](l: List[T], e: T): Boolean = {
-    error("fix me")
+    if (l.length == 0) {
+      false
+    } else if (l.head == e) {
+      true
+    } else {
+      elementExists(l.tail, e)
+    }
   }
 
   /**
@@ -114,7 +124,7 @@ object Collections {
    * pattern match or some other method.
    */
   def oddElements(iList: List[Int]): List[Int] = {
-    error("fix me")
+    iList.filter((i: Int) => i % 2 == 1)
   }
 
   /**
@@ -130,7 +140,11 @@ object Collections {
    * neat way using recursion. 
    */
   def tails[T](l: List[T]): List[List[T]] = {
-    error("fix me")
+    if (l.isEmpty) {
+      List(l)
+    } else {
+      List(l) ++ tails(l.tail)
+    }
   }
   
   /**
@@ -139,7 +153,7 @@ object Collections {
    * As usual, various ways exist: pattern matching, folding, ...
    */
   def maxElementInList(l: List[Int]): Int = {
-    error("fix me")
+    l.foldLeft(0)((m: Int, n: Int) => if (m > n) m else n)
   }
 
   /**
@@ -147,7 +161,7 @@ object Collections {
    * of the two list
    */
   def sumOfTwo(l1: List[Int], l2: List[Int]): List[Int] = {
-    error("fix me")
+    l1.zip(l2).map({case (m,n) => m + n})
   }
 
   /**
@@ -155,7 +169,11 @@ object Collections {
    * method above
    */
   def sumOfMany(l: List[Int]*): List[Int] = {
-    error("fix me")
+    var finalList: List[Int] = List.fill(l.length)(0)
+    for (arg <- l) {
+      finalList = sumOfTwo(finalList, arg)
+    }
+    finalList
   }
 
   case class Person(age: Int, firstName: String, lastName: String)
