@@ -176,6 +176,7 @@ object Collections {
    */
   def sumOfMany(l: List[Int]*): List[Int] = {
     var finalList: List[Int] = List.fill(l.length)(0)
+    // Realized I could've done a fold
     for (arg <- l) {
       finalList = sumOfTwo(finalList, arg)
     }
